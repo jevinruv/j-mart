@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from "@angular/forms";
+import { CustomFormsModule } from "ng2-validation"
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,8 +17,10 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthService } from './services/auth.service';
-import { UserService } from './services/user.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { UserService } from './services/user.service';
+import { ProductService } from './services/product.service';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -35,13 +38,15 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule, 
-    ToastrModule.forRoot() ,
+    CustomFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     NgbModule,
   ],
   providers: [
     AuthService,
-    UserService
+    UserService,
+    ProductService,
     //AdminAuthGuard
   ],
   bootstrap: [AppComponent]

@@ -10,9 +10,9 @@ export class CategoryService {
 
   API_URL = environment.API_BASE_URL + '/category';
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getCategories(){
+  getCategories() {
     return this.http.get<[]>(this.API_URL).pipe(map(data => data['content']));
   }
 }

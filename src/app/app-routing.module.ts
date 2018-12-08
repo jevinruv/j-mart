@@ -21,8 +21,9 @@ const routes: Routes = [
     component: DefaultLayoutComponent,
     canActivate: [AdminAuthGuard],
     children: [
-      { path: 'products', component: AdminProductsComponent },
       { path: 'products/new', component: ProductFormComponent },
+      { path: 'products/:id', component: ProductFormComponent },
+      { path: 'products', component: AdminProductsComponent },
     ]
   },
   {
