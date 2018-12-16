@@ -5,8 +5,8 @@
     <div class="card-text">
       <div class="row">
         <span class="card-text col-6 text-danger">{{ product.price | currency:'LKR' }}</span>
-        <span class="card-text col-6 text-right bg-warning text-dark">
-          <i class="fa fa-tags"></i> 5% Off
+        <span class="card-text col-6 text-right bg-warning text-dark" *ngIf="product.percentage">
+          <i class="fa fa-tags"></i> {{ product.percentage }} % Off
         </span>
       </div>
     </div>
