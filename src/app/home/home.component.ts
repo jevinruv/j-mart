@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service';
+import { ProductService } from '../services/product.service';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from "rxjs/operators";
 
 @Component({
   selector: 'app-home',
@@ -8,16 +10,37 @@ import { UserService } from '../services/user.service';
 })
 export class HomeComponent implements OnInit {
 
-  //categories$;
+  productList: any[] = [];
+  filteredProductList: any[] = [];
+  selectedCategory: string;
 
-  constructor(private categoryService: UserService) { }
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    //this.categories$ = this.categoryService.getAll();
 
-    this.categoryService.getAll().subscribe(data => {
-      console.log(data);
-    })
+    this.productService.getAll()
+      .pipe(switchMap(data => {
+        this.productList = data;
+        return this.route.queryParamMap;
+      }))
+      .subscribe(params => {
+
+        this.selectedCategory = params.get('category');
+
+        this.filteredProductList = (this.selectedCategory) ?
+          this.productList.filter(product => product.category === this.selectedCategory) :
+          this.productList;
+
+      });
+  }
+
+  search(query: string) {
+    this.filteredProductList = (query) ?
+      this.productList.filter(product => product.name.toLowerCase().includes(query.toLowerCase())) :
+      this.productList;
   }
 
 }

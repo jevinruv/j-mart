@@ -8,7 +8,7 @@
     </div>
   </div>
   <div class="navbar-expand ml-auto navbar-nav">
-    <div class="navbar-nav">
+    <div class="navbar-nav" *ngIf="user !== null">
 
       <li ngbDropdown class="nav-item dropdown">
         <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
@@ -30,9 +30,6 @@
       </a>
       <a class="nav-item nav-link" href="https://twitter.com/beeman_nl" target="_blank">
         <i class="fa fa-twitter"></i>
-      </a>
-      <a class="nav-item nav-link" href="https://medium.com/@beeman" target="_blank">
-        <i class="fa fa-medium"></i>
       </a>
     </div>
   </div>

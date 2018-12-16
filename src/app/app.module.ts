@@ -20,7 +20,8 @@ import { AuthService } from './services/auth.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { UserService } from './services/user.service';
 import { ProductService } from './services/product.service';
-import { from } from 'rxjs';
+import { ProductFilterComponent } from './product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,9 @@ import { from } from 'rxjs';
     DefaultLayoutComponent,
     LoginComponent,
     AdminProductsComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { from } from 'rxjs';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgbModule,
+    // DataTableModule.forRoot(),
   ],
   providers: [
     AuthService,

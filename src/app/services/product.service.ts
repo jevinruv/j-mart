@@ -11,7 +11,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  getAllProducts() {
+  getAll() {
     return this.http.get<[]>(this.API_URL);
   }
 
@@ -21,6 +21,14 @@ export class ProductService {
 
   addProduct(product) {
     return this.http.post(this.API_URL, product);
+  }
+
+  updateProduct(product) {
+    return this.http.put(this.API_URL, product);
+  }
+
+  delete(id) {
+    return this.http.delete(this.API_URL + `/${id}`);
   }
 
 }

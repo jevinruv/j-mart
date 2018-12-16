@@ -8,11 +8,11 @@ import { map } from 'rxjs/operators';
 })
 export class CategoryService {
 
-  API_URL = environment.API_BASE_URL + '/category';
+  API_URL = environment.API_BASE_URL + '/categories';
 
   constructor(private http: HttpClient) { }
 
-  getCategories() {
-    return this.http.get<[]>(this.API_URL).pipe(map(data => data['content']));
+  getAll() {
+    return this.http.get<[]>(this.API_URL);
   }
 }
