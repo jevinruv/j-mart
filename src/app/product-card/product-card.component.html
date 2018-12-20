@@ -1,17 +1,19 @@
 <div *ngIf="product.name" class="card">
-  <img class="card-img-top" [src]="product.imageUrl" *ngIf="product.imageUrl" alt="{{ product.name }}">
-  <div class="card-body">
-    <h5 class="card-title">{{ product.name }}</h5>
-    <div class="card-text">
-      <div class="row">
-        <span class="card-text col-6 text-danger">{{ product.price | currency:'LKR' }}</span>
-        <span class="card-text col-6 text-right bg-warning text-dark" *ngIf="product.percentage">
-          <i class="fa fa-tags"></i> {{ product.percentage }} % Off
-        </span>
+  <a href="google.com" class="custom-card">
+    <img class="card-img-top" [src]="product.imageUrl" *ngIf="product.imageUrl" alt="{{ product.name }}">
+    <div class="card-body">
+      <h5 class="card-title">{{ product.name }}</h5>
+      <div class="card-text">
+        <div class="row">
+          <span class="card-text col-6 text-danger">{{ product.price | currency:'LKR' }}</span>
+          <span class="card-text col text-right bg-warning text-dark" *ngIf="product.percentage">
+            <i class="fa fa-tags"></i> {{ product.percentage }} % Off
+          </span>
+        </div>
       </div>
     </div>
-  </div>
+  </a>
   <div class="card-footer">
-    <a *ngIf="showActions" href="" class="btn btn-success btn-block">Add to Cart</a>
+    <button *ngIf="showActions" (click)="addToCart(product)" class="btn btn-success btn-block">Add to Cart</button>
   </div>
 </div>

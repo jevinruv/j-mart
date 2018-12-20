@@ -13,7 +13,6 @@ import { LoginLayoutComponent } from './layouts/login-layout/login-layout.compon
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { LoginComponent } from './login/login.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-//import { AdminAuthGuard } from './guards/admin-auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthService } from './services/auth.service';
@@ -48,10 +47,6 @@ import { ProductCardComponent } from './product-card/product-card.component';
     // DataTableModule.forRoot(),
   ],
   providers: [
-    AuthService,
-    UserService,
-    ProductService,
-    //AdminAuthGuard
   ],
   bootstrap: [AppComponent]
 })
