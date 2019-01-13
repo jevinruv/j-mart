@@ -1,14 +1,20 @@
-<div *ngIf="product.name" class="card">
+<div *ngIf="product.name" class="item card">
+  <span class="notify-badge" *ngIf="product.percentage">
+    <i class="fa fa-tags"></i> {{ product.percentage }} % Off
+  </span>
   <a href="google.com" class="custom-card">
     <img class="card-img-top" [src]="product.imageUrl" *ngIf="product.imageUrl" alt="{{ product.name }}">
     <div class="card-body">
       <h5 class="card-title">{{ product.name }}</h5>
       <div class="card-text">
         <div class="row">
-          <span class="card-text col-6 text-danger">{{ product.price | currency:'LKR' }}</span>
-          <span class="card-text col text-right bg-warning text-dark" *ngIf="product.percentage">
-            <i class="fa fa-tags"></i> {{ product.percentage }} % Off
-          </span>
+          <span *ngIf="!product.percentage" class="card-text col-6 text-danger"> {{ product.price | currency:'LKR' }}</span>
+          <div *ngIf="product.percentage">
+            <span class="card-text col-6 text-danger"> <del> {{ product.price | currency:'LKR' }} </del> </span>
+            <span class="card-text col text-right text-danger">
+              <b> {{ product.price*(1-product.percentage/100) | currency:'LKR' }}</b>
+            </span>
+          </div>
         </div>
       </div>
     </div>

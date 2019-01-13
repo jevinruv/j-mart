@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminAuthGuard } from './guards/admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
     component: DefaultLayoutComponent,
     children: [
       { path: '', component: HomeComponent },
+      { path: 'products/:id', component: ProductDetailComponent },
     ]
   },
   {
