@@ -1,20 +1,25 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
-import { User } from '../models/user';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AdminAuthGuard implements CanActivate {
 
-    user: User;
-
-    constructor(private router: Router) { }
+    constructor(
+        private router: Router,
+        private tokenStorage: TokenStorageService
+    ) { }
 
     canActivate() {
-        this.user = JSON.parse(localStorage.getItem("loggedUser"));
-        if (this.user && this.user.role == "ADMIN")
+
+        let authority = this.tokenStorage.getAuthority();
+
+        if (authority && authority == "ROLE_ADMIN") {
             return true;
+        }
+
         this.router.navigate(['/']);
         return false;
     }

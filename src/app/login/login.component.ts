@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -12,40 +13,53 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private toastr: ToastrService,
+    private tokenStorage: TokenStorageService,
     private authService: AuthService,
     private router: Router,
   ) { }
 
   ngOnInit() {
-    let loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-
-    if (loggedUser) {
+    let token = this.tokenStorage.getToken();
+    if (token) {
       this.router.navigateByUrl('');
     }
   }
 
-  onSubmit(loginForm){
-    this.authService.loginUser(loginForm)
-      .subscribe(data => {
-        this.directUser(data);
-      })
+  onSubmit(loginForm) {
+    this.authService.login(loginForm)
+      .subscribe(
+        data => {
+          this.directUser(data);
+        },
+        error => {
+          console.log(error.error.message)
+          this.toastr.error(error.error.message);
+        });
   }
 
-  directUser(loggedUser) {
+  directUser(data) {
 
-    if (loggedUser) {
-      switch (loggedUser.Role) {
-        case 'Admin':
+    if (data) {
+
+      this.tokenStorage.saveToken(data.accessToken);
+      this.tokenStorage.saveUsername(data.username);
+      this.tokenStorage.saveAuthorities(data.authorities);
+
+      switch (this.tokenStorage.getAuthority()) {
+
+        case 'ROLE_ADMIN':
           this.router.navigateByUrl('admin/home');
           break;
-        default:
+        case 'ROLE_USER':
           this.router.navigateByUrl('');
           break;
+        default:
+          this.router.navigateByUrl('/login');
+          break;
       }
-      localStorage.setItem("loggedUser", JSON.stringify(loggedUser));
     }
     else {
-      this.toastr.error("Invalid Credentials");
+      this.toastr.error("Error");
     }
   }
 

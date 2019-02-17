@@ -1,7 +1,11 @@
 .card{
     margin-bottom: 30px;
 }
-
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: contain;
+}
 .item {
     position:relative;
     display:inline-block;

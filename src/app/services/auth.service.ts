@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { JwtResponse } from '../models/jwt-response';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,19 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  loginUser(loginForm): Observable<User> {
-    // let params = new HttpParams();
-    // params = params.append("email", loginForm.email);
-    // params = params.append("password", loginForm.password);
+  login(loginForm): Observable<JwtResponse> {
 
-    //return this.http.get<User>(this.apiURL, { params: params });
-    return this.http.post<User>(this.API_URL, 
-      { email: loginForm.email, password: loginForm.password });
+    return this.http.post<JwtResponse>(this.API_URL + '/signin', { username: loginForm.username, password: loginForm.password });
   }
+
+  register(registerForm): Observable<string> {
+
+    registerForm.role = ['user'];
+
+    return this.http.post<string>(this.API_URL + '/signup', registerForm);
+  }
+
+
+
+
 }

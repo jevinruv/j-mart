@@ -8,6 +8,7 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { AdminAuthGuard } from './guards/admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,8 @@ const routes: Routes = [
     path: '',
     component: LoginLayoutComponent,
     children: [
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'register', component: RegisterComponent }
     ]
   },
   { path: '**', redirectTo: '' }

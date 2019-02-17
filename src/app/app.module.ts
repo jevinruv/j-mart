@@ -19,6 +19,8 @@ import { ProductFormComponent } from './admin/product-form/product-form.componen
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { httpInterceptorProviders } from './auth-interceptor';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     ProductFilterComponent,
     ProductCardComponent,
     ProductDetailComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     // DataTableModule.forRoot(),
   ],
   providers: [
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

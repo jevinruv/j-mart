@@ -10,7 +10,9 @@
         <a class="nav-link" href="#">Offers</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" routerLink="/shopping-cart"> Shopping Cart
+          <span class="badge badge-warning badge-pill">{{cartProductCount}}</span>
+        </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Features</a>
@@ -18,13 +20,13 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Features</a>
       </li>
-      <li class="nav-item dropdown" *ngIf="user" ngbDropdown>
+      <li class="nav-item dropdown" *ngIf="username" ngbDropdown>
         <a class="nav-link dropdown-toggle" ngbDropdownToggle>
-          <i class="fa fa-user-circle"></i> {{user.name}}
+          <i class="fa fa-user-circle"></i> {{username}}
         </a>
         <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
           <a class="dropdown-item" href="#">HTML</a>
-          <a class="dropdown-item" href="#">TS</a>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </li>
     </ul>
