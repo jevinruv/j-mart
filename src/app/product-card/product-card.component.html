@@ -9,12 +9,12 @@
       <div class="card-text">
         <div class="row">
           <span *ngIf="!product.percentage" class="card-text col-6 text-danger">
-            {{ product.price | currency:'LKR' : 'symbol' : '1.0'}}</span>
+            {{ product.price | currency:'LKR ' : 'symbol' : '1.0'}}</span>
           <div *ngIf="product.percentage">
-            <span class="card-text col-6 text-danger"> <del> {{ product.price | currency:'LKR' : 'symbol' : '1.0'}}
+            <span class="card-text col-6 text-danger"> <del> {{ product.price | currency:'LKR ' : 'symbol' : '1.0'}}
               </del> </span>
             <span class="card-text col text-right text-danger">
-              <b> {{ product.price*(1-product.percentage/100) | currency:'LKR' : 'symbol' : '1.0'}}</b>
+              <b> {{ product.price*(1-product.percentage/100) | currency:'LKR ' : 'symbol' : '1.0'}}</b>
             </span>
           </div>
         </div>

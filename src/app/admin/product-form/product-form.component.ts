@@ -64,15 +64,16 @@ export class ProductFormComponent implements OnInit {
   }
 
   addProduct(product) {
-    this.productService.addProduct(product).subscribe(data => {
-      if (data) {
+    this.productService.addProduct(product).subscribe(
+      data => {
         this.toastr.success("Successfully Added!");
         this.router.navigate(['admin/products']);
-      }
-      else {
+      },
+      error => {
         this.toastr.error("Not Added!");
+        console.log(error);
       }
-    });
+    );
   }
 
   updateProduct(product) {

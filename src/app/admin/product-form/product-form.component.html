@@ -35,7 +35,7 @@
         <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control"
           required>
           <option value=""></option>
-          <option *ngFor="let category of categoryList" [value]="category.code">{{category.name}}</option>
+          <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
         </select>
         <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
           Category is Required
@@ -52,8 +52,17 @@
         </div>
       </div>
 
-      <button class="btn btn-success">Save</button>
-      <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea #description="ngModel" [(ngModel)]="product.description" name="description" id="description"
+          class="form-control" rows="3" required> </textarea>
+        <div class="alert alert-danger" *ngIf="description.touched && description.invalid">
+          <div *ngIf="description.errors.required">Description is Required</div>
+        </div>
+      </div>
+
+      <button class="btn btn-success" [disabled]="!productForm.valid">Save</button>
+      <button *ngIf="id" type="button" (click)="delete()" class="btn btn-danger">Delete</button>
     </form>
   </div>
 

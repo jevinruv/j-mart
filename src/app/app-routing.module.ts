@@ -9,6 +9,7 @@ import { AdminAuthGuard } from './guards/admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { RegisterComponent } from './register/register.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,7 @@ const routes: Routes = [
     children: [
       { path: '', component: HomeComponent },
       { path: 'products/:id', component: ProductDetailComponent },
+      { path: 'shopping-cart', component: ShoppingCartComponent },
     ]
   },
   {

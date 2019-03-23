@@ -50,4 +50,9 @@ export class ShoppingCartService {
     return this.manageCart(shoppingCartForm);
   }
 
+  clearCart() {
+    let cartId = this.getOrCreateCartId();
+    return this.http.delete(this.API_URL + `/${cartId}`);
+  }
+
 }

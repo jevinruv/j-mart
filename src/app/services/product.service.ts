@@ -20,7 +20,14 @@ export class ProductService {
   }
 
   addProduct(product) {
-    return this.http.post(this.API_URL, product);
+    let newProduct = {
+      name: product.name,
+      price: product.price,
+      imageUrl: product.imageUrl,
+      description: product.description
+    };
+    console.log(newProduct);
+    return this.http.post(this.API_URL + `/new/${product.category}`, newProduct);
   }
 
   updateProduct(product) {

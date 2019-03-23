@@ -21,6 +21,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { httpInterceptorProviders } from './auth-interceptor';
 import { RegisterComponent } from './register/register.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { RegisterComponent } from './register/register.component';
     ProductCardComponent,
     ProductDetailComponent,
     RegisterComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,

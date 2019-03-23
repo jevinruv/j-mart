@@ -22,10 +22,11 @@ export class NavbarComponent implements OnInit {
     this.username = this.tokenService.getUsername();
 
     this.shoppingCartService.getCart().subscribe(data => {
-      let shoppingCartProducts = data['shoppingCartProducts'];
-      for (let product of shoppingCartProducts) {
-        this.cartProductCount += product.quantity;
-        console.log(this.cartProductCount);
+      if (data) {
+        let shoppingCartProducts = data['shoppingCartProducts'];
+        for (let product of shoppingCartProducts) {
+          this.cartProductCount += product.quantity;
+        }
       }
     });
   }
