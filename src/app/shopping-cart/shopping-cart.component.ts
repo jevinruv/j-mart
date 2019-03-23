@@ -15,14 +15,43 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
-    this.shoppingCartService.getCart().subscribe(data => {
+    this.shoppingCartService.getCart(1).subscribe(data => {
       this.shoppingCart = data;
-      this.getProductCount();
-      this.getTotalPrice();
+
+      this.setValues();
+    });
+
+    this.initListeners();
+
+  }
+
+  initListeners() {
+    this.shoppingCartService.getChannel().bind('itemAdded', data => {
+      this.shoppingCart.shoppingCartProducts.push(data);
+
+      this.setValues();
+    });
+
+    this.shoppingCartService.getChannel().bind('itemUpdated', data => {
+      let index = this.shoppingCart.shoppingCartProducts.findIndex(item => item.id == data.id);
+      this.shoppingCart.shoppingCartProducts[index] = data;
+
+      this.setValues();
+    });
+
+    this.shoppingCartService.getChannel().bind('itemRemoved', data => {
+      this.shoppingCart.shoppingCartProducts = this.shoppingCart.shoppingCartProducts.filter(item => item.id !== data.id);
+
+      this.setValues();
     });
   }
 
-  getProductCount() {
+  setValues() {
+    this.getProductCount();
+    this.getTotalPrice();
+  }
+
+  private getProductCount() {
     this.cartProductCount = 0;
     if (this.shoppingCart) {
       let shoppingCartProducts = this.shoppingCart['shoppingCartProducts'];
@@ -32,7 +61,7 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  getTotalPrice() {
+  private getTotalPrice() {
     this.totalPrice = 0;
     if (this.shoppingCart) {
       let shoppingCartProducts = this.shoppingCart['shoppingCartProducts'];
@@ -42,30 +71,30 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  addToCart(product) {
-    this.shoppingCartService.addToCart(product).subscribe(data => {
-      this.shoppingCart = data;
-      this.getProductCount();
-      this.getTotalPrice();
-    });
-  }
+  // addToCart(product) {
+  //   this.shoppingCartService.addToCart(product).subscribe(data => {
+  //     this.shoppingCart = data;
+  //     this.getProductCount();
+  //     this.getTotalPrice();
+  //   });
+  // }
 
-  removeFromCart(product) {
-    this.shoppingCartService.removeFromCart(product).subscribe(data => {
-      this.shoppingCart = data;
-      this.getProductCount();
-      this.getTotalPrice();
-    });
-  }
+  // removeFromCart(product) {
+  //   this.shoppingCartService.removeFromCart(product).subscribe(data => {
+  //     this.shoppingCart = data;
+  //     this.getProductCount();
+  //     this.getTotalPrice();
+  //   });
+  // }
 
-  clearCart() {
-    this.shoppingCartService.clearCart().subscribe(data => {
-      this.shoppingCart = {};
-      this.getProductCount();
-      this.getTotalPrice();
-      localStorage.removeItem('cartId');
-    });
-  }
+  // clearCart() {
+  //   this.shoppingCartService.clearCart().subscribe(data => {
+  //     this.shoppingCart = {};
+  //     this.getProductCount();
+  //     this.getTotalPrice();
+  //     localStorage.removeItem('cartId');
+  //   });
+  // }
 
 
 

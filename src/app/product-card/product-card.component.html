@@ -11,8 +11,9 @@
           <span *ngIf="!product.percentage" class="card-text col-6 text-danger">
             {{ product.price | currency:'LKR ' : 'symbol' : '1.0'}}</span>
           <div *ngIf="product.percentage">
-            <span class="card-text col-6 text-danger"> <del> {{ product.price | currency:'LKR ' : 'symbol' : '1.0'}}
-              </del> </span>
+            <span class="card-text col-6 text-danger">
+              <del> {{ product.price | currency:'LKR ' : 'symbol' : '1.0'}} </del>
+            </span>
             <span class="card-text col text-right text-danger">
               <b> {{ product.price*(1-product.percentage/100) | currency:'LKR ' : 'symbol' : '1.0'}}</b>
             </span>
@@ -21,7 +22,8 @@
       </div>
     </div>
   </a>
-  <div *ngIf="showActions" class="card-footer">
+
+  <!-- <div *ngIf="showActions" class="card-footer">
 
     <button *ngIf="getQuantity() === 0; else updateQuantity" (click)="addToCart()" class="btn btn-success btn-block">Add
       to Cart</button>
@@ -39,4 +41,20 @@
     </ng-template>
 
   </div>
+   -->
+
+  <div *ngIf="showActions" class="card-footer text-center">
+    <button *ngIf=" !inCart" (click)="addToCart()" class="btn btn-success btn-block">Add to Cart</button>
+
+    <div class="row">
+      <div class="col">
+        <span *ngIf="inCart">{{ quantity }} in Cart</span>
+      </div>
+      <div class="col">
+        <button *ngIf="inCart" (click)="removeFromCart()" class="btn btn-danger btn-block">Remove from Cart</button>
+      </div>
+    </div>
+
+  </div>
+
 </div>

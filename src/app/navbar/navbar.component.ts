@@ -21,14 +21,14 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
     this.username = this.tokenService.getUsername();
 
-    this.shoppingCartService.getCart().subscribe(data => {
-      if (data) {
-        let shoppingCartProducts = data['shoppingCartProducts'];
-        for (let product of shoppingCartProducts) {
-          this.cartProductCount += product.quantity;
-        }
-      }
-    });
+    // this.shoppingCartService.getCart().subscribe(data => {
+    //   if (data) {
+    //     let shoppingCartProducts = data['shoppingCartProducts'];
+    //     for (let product of shoppingCartProducts) {
+    //       this.cartProductCount += product.quantity;
+    //     }
+    //   }
+    // });
   }
 
   toggleNavbar() {

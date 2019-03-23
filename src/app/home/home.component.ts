@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   discountList: any[] = [];
   filteredList: any[] = [];
   selectedCategory: string;
-  cart: any;
+  shoppingCart: any = {};
 
   constructor(
     private productService: ProductService,
@@ -27,8 +27,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.shoppingCartService.getCart().subscribe(data => {
-      this.cart = data;
+    this.shoppingCartService.getCart(1).subscribe(data => {
+      this.shoppingCart = data;
     });
 
     let discounts = this.discountService.getAll();
@@ -39,6 +39,24 @@ export class HomeComponent implements OnInit {
       this.productList = data[1];
       this.mergeList();
       this.categorySelection();
+    });
+
+    this.initListeners();
+
+  }
+
+  initListeners() {
+    this.shoppingCartService.getChannel().bind('itemAdded', data => {
+      this.shoppingCart.shoppingCartProducts.push(data);
+    });
+
+    this.shoppingCartService.getChannel().bind('itemUpdated', data => {
+      let index = this.shoppingCart.shoppingCartProducts.findIndex(item => item.id == data.id);
+      this.shoppingCart.shoppingCartProducts[index] = data;
+    });
+
+    this.shoppingCartService.getChannel().bind('itemRemoved', data => {
+      this.shoppingCart.shoppingCartProducts = this.shoppingCart.shoppingCartProducts.filter(item => item.id !== data.id);
     });
   }
 

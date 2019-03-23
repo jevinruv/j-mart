@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
 
 @Component({
@@ -6,37 +6,72 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.css']
 })
-export class ProductCardComponent {
-
+export class ProductCardComponent implements OnInit {
 
   @Input('product') product;
   @Input('show-actions') showActions = true;
   @Input('cart') shoppingCart;
+  quantity = 1;
+  inCart = false;
 
-  constructor(private cartService: ShoppingCartService) { }
+  constructor(private shoppingCartService: ShoppingCartService) { }
+
+  ngOnInit() {
+
+    let item = this.shoppingCart.shoppingCartProducts.find(item => item.id === this.product.id);
+
+    if (item) {
+      this.quantity = item.quantity;
+      this.inCart = true;
+    }
+
+    this.initListeners();
+  }
+
+  initListeners() {
+    this.shoppingCartService.getChannel().bind('itemAdded', data => {
+      // this.shoppingCart.shoppingCartProducts.push(data);
+      if (data.product.id === this.product.id) {
+        this.quantity = data.quantity;
+        this.inCart = true;
+      }
+    });
+
+    this.shoppingCartService.getChannel().bind('itemUpdated', data => {
+      // let index = this.shoppingCart.shoppingCartProducts.findIndex(item => item.id == data.id);
+      // this.shoppingCart.shoppingCartProducts[index] = data;
+
+      if (data.product.id === this.product.id) {
+        this.quantity = data.quantity;
+        this.inCart = true;
+      }
+    });
+
+    this.shoppingCartService.getChannel().bind('itemRemoved', data => {
+      this.shoppingCart.shoppingCartProducts = this.shoppingCart.shoppingCartProducts.filter(item => item.id !== data.id);
+
+    });
+  }
+
+  onKey(event: any) {
+    this.quantity = event.target.value;
+  }
 
   addToCart() {
-    this.cartService.addToCart(this.product).subscribe(data => {
-      this.shoppingCart = data;
-      this.getQuantity();
-    });
-  }
 
-  removeFromCart() {
-    this.cartService.removeFromCart(this.product).subscribe(data => {
-      this.shoppingCart = data;
-      this.getQuantity();
-    });
-  }
+    let p = {
+      shoppingCartId: 1,
+      productId: this.product.id,
+      quantity: this.quantity
+    };
 
-
-  getQuantity() {
-    if (!this.shoppingCart) return 0;
-
-    let shoppingCartProducts = this.shoppingCart.shoppingCartProducts;
-    let product = shoppingCartProducts.find(product => product.product.id == this.product.id);
-
-    return product ? product.quantity : 0;
+    this.shoppingCartService.addOrUpdate(p).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.error(error);
+      });
   }
 
 }
