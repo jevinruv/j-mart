@@ -20,11 +20,11 @@
         <td class="text-center">
           <div class="row no-gutters">
             <div class="col-2">
-              <button (click)="removeFromCart(cartItem.product)" class="btn btn-primary btn-block">-</button>
+              <button (click)="decreaseCartItem(cartItem)" class="btn btn-primary btn-block">-</button>
             </div>
             <div class="col text-center">{{ cartItem.quantity }} in cart</div>
             <div class="col-2">
-              <button (click)="addToCart(cartItem.product)" class="btn btn-primary btn-block">+</button>
+              <button (click)="increaseCartItem(cartItem)" class="btn btn-primary btn-block">+</button>
             </div>
           </div>
 

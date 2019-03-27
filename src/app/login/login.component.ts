@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { TokenStorageService } from '../services/token-storage.service';
+import { ShoppingCartService } from '../services/shopping-cart.service';
+import { SessionStorageService } from '../services/session-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -13,50 +14,35 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private toastr: ToastrService,
-    private tokenStorage: TokenStorageService,
+    private sessionService: SessionStorageService,
     private authService: AuthService,
     private router: Router,
   ) { }
 
   ngOnInit() {
-    let token = this.tokenStorage.getToken();
+    let token = this.sessionService.getToken();
     if (token) {
       this.router.navigateByUrl('');
     }
   }
 
   onSubmit(loginForm) {
-    this.authService.login(loginForm)
-      .subscribe(
-        data => {
-          this.directUser(data);
-        },
-        error => {
-          console.log(error.error.message)
-          this.toastr.error(error.error.message);
-        });
+    this.authService.login(loginForm).subscribe(
+      data => {
+        this.directUser(data);
+      },
+      error => {
+        this.toastr.error(error.error.message);
+      });
   }
 
   directUser(data) {
 
     if (data) {
-
-      this.tokenStorage.saveToken(data.accessToken);
-      this.tokenStorage.saveUsername(data.username);
-      this.tokenStorage.saveAuthorities(data.authorities);
-
-      switch (this.tokenStorage.getAuthority()) {
-
-        case 'ROLE_ADMIN':
-          this.router.navigateByUrl('admin/home');
-          break;
-        case 'ROLE_USER':
-          this.router.navigateByUrl('');
-          break;
-        default:
-          this.router.navigateByUrl('/login');
-          break;
-      }
+      this.sessionService.saveToken(data.accessToken);
+      this.sessionService.saveUsername(data.username);
+      this.sessionService.saveUserId(data.userId);
+      this.router.navigateByUrl('');
     }
     else {
       this.toastr.error("Error");

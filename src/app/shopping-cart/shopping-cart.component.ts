@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,20 +16,20 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private shoppingCartService: ShoppingCartService) { }
 
   ngOnInit() {
-    this.shoppingCartService.getCart(1).subscribe(data => {
+    this.shoppingCartService.getCart().subscribe(data => {
       this.shoppingCart = data;
 
       this.setValues();
     });
 
     this.initListeners();
-
   }
 
   initListeners() {
     this.shoppingCartService.getChannel().bind('itemAdded', data => {
       this.shoppingCart.shoppingCartProducts.push(data);
 
+      console.log(data)
       this.setValues();
     });
 
@@ -41,6 +42,12 @@ export class ShoppingCartComponent implements OnInit {
 
     this.shoppingCartService.getChannel().bind('itemRemoved', data => {
       this.shoppingCart.shoppingCartProducts = this.shoppingCart.shoppingCartProducts.filter(item => item.id !== data.id);
+
+      this.setValues();
+    });
+
+    this.shoppingCartService.getChannel().bind('cartDeleted', data => {
+      this.shoppingCart.shoppingCartProducts = [];
 
       this.setValues();
     });
@@ -63,6 +70,7 @@ export class ShoppingCartComponent implements OnInit {
 
   private getTotalPrice() {
     this.totalPrice = 0;
+
     if (this.shoppingCart) {
       let shoppingCartProducts = this.shoppingCart['shoppingCartProducts'];
       for (let cartItem of shoppingCartProducts) {
@@ -71,30 +79,34 @@ export class ShoppingCartComponent implements OnInit {
     }
   }
 
-  // addToCart(product) {
-  //   this.shoppingCartService.addToCart(product).subscribe(data => {
-  //     this.shoppingCart = data;
-  //     this.getProductCount();
-  //     this.getTotalPrice();
-  //   });
-  // }
+  increaseCartItem(cartItem) {
 
-  // removeFromCart(product) {
-  //   this.shoppingCartService.removeFromCart(product).subscribe(data => {
-  //     this.shoppingCart = data;
-  //     this.getProductCount();
-  //     this.getTotalPrice();
-  //   });
-  // }
+    let cartId = this.shoppingCartService.getOrCreateCartId();
 
-  // clearCart() {
-  //   this.shoppingCartService.clearCart().subscribe(data => {
-  //     this.shoppingCart = {};
-  //     this.getProductCount();
-  //     this.getTotalPrice();
-  //     localStorage.removeItem('cartId');
-  //   });
-  // }
+    let newCartItem = {
+      shoppingCartId: cartId,
+      productId: cartItem.product.id,
+      quantity: cartItem.quantity + 1
+    };
+
+    this.shoppingCartService.addOrUpdate(newCartItem).subscribe();
+  }
+
+  decreaseCartItem(cartItem) {
+
+    let cartId = this.shoppingCartService.getOrCreateCartId();
+    let newCartItem = {
+      shoppingCartId: cartId,
+      productId: cartItem.product.id,
+      quantity: cartItem.quantity - 1
+    };
+
+    this.shoppingCartService.addOrUpdate(newCartItem).subscribe();
+  }
+
+  clearCart() {
+    this.shoppingCartService.clearCart().subscribe();
+  }
 
 
 

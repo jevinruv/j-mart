@@ -22,6 +22,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { httpInterceptorProviders } from './auth-interceptor';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     ProductDetailComponent,
     RegisterComponent,
     ShoppingCartComponent,
+    AdminLoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,16 +5,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { AdminAuthGuard } from './guards/admin-auth-guard.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminAuthGuard } from './guards/admin-auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
+    canActivate: [AuthGuard],
     children: [
       { path: '', component: HomeComponent },
       { path: 'products/:id', component: ProductDetailComponent },
@@ -36,6 +39,7 @@ const routes: Routes = [
     component: LoginLayoutComponent,
     children: [
       { path: 'login', component: LoginComponent },
+      { path: 'admin/login', component: AdminLoginComponent },
       { path: 'register', component: RegisterComponent }
     ]
   },

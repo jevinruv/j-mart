@@ -18,12 +18,16 @@ export class ProductCardComponent implements OnInit {
 
   ngOnInit() {
 
-    let item = this.shoppingCart.shoppingCartProducts.find(item => item.id === this.product.id);
+    if (this.shoppingCart && this.shoppingCart.shoppingCartProducts) {
 
-    if (item) {
-      this.quantity = item.quantity;
-      this.inCart = true;
+      let item = this.shoppingCart.shoppingCartProducts.find(item => item.id === this.product.id);
+
+      if (item) {
+        this.quantity = item.quantity;
+        this.inCart = true;
+      }
     }
+
 
     this.initListeners();
   }
@@ -53,21 +57,19 @@ export class ProductCardComponent implements OnInit {
     });
   }
 
-  onKey(event: any) {
-    this.quantity = event.target.value;
-  }
-
   addToCart() {
 
+    let cartId = this.shoppingCartService.getOrCreateCartId();
+
     let p = {
-      shoppingCartId: 1,
+      shoppingCartId: cartId,
       productId: this.product.id,
       quantity: this.quantity
     };
 
     this.shoppingCartService.addOrUpdate(p).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
       },
       error => {
         console.error(error);

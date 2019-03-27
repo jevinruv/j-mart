@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { TokenStorageService } from '../services/token-storage.service';
 import { Router } from '@angular/router';
+import { SessionStorageService } from '../services/session-storage.service';
 
 @Component({
   selector: 'app-register',
@@ -14,11 +14,11 @@ export class RegisterComponent {
   constructor(
     private authService: AuthService,
     private toastr: ToastrService,
-    private tokenStorage: TokenStorageService,
+    private sessionService: SessionStorageService,
     private router: Router) { }
 
   ngOnInit() {
-    let token = this.tokenStorage.getToken();
+    let token = this.sessionService.getToken();
     if (token) {
       this.router.navigateByUrl('');
     }

@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.shoppingCartService.getCart(1).subscribe(data => {
+    this.shoppingCartService.getCart().subscribe(data => {
       this.shoppingCart = data;
     });
 
@@ -57,6 +57,10 @@ export class HomeComponent implements OnInit {
 
     this.shoppingCartService.getChannel().bind('itemRemoved', data => {
       this.shoppingCart.shoppingCartProducts = this.shoppingCart.shoppingCartProducts.filter(item => item.id !== data.id);
+    });
+
+    this.shoppingCartService.getChannel().bind('cartDeleted', data => {
+      this.shoppingCart.shoppingCartProducts = [];
     });
   }
 
