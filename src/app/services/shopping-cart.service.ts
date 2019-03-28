@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { PusherService } from './pusher.service';
 import { ShoppingCart } from '../models/shopping-cart';
@@ -32,8 +32,13 @@ export class ShoppingCartService {
     return this.http.post(this.API_URL, param);
   }
 
-  deleteCartItem(id): Observable<{}> {
-    return this.http.delete(`${this.API_URL}/${id}`);
+  deleteCartItem(cartItem): Observable<{}> {
+
+    const options = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+      body: cartItem
+    };
+    return this.http.delete(this.API_URL, options);
   }
 
   clearCart(): Observable<{}> {

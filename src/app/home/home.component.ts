@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
       this.shoppingCart.shoppingCartProducts = this.shoppingCart.shoppingCartProducts.filter(item => item.id !== data.id);
     });
 
-    this.shoppingCartService.getChannel().bind('cartDeleted', data => {
+    this.shoppingCartService.getChannel().bind('cartDeleted', () => {
       this.shoppingCart.shoppingCartProducts = [];
     });
   }

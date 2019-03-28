@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../services/shopping-cart.service';
-import { ShoppingCart } from '../models/shopping-cart';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -29,7 +28,6 @@ export class ShoppingCartComponent implements OnInit {
     this.shoppingCartService.getChannel().bind('itemAdded', data => {
       this.shoppingCart.shoppingCartProducts.push(data);
 
-      console.log(data)
       this.setValues();
     });
 
@@ -42,6 +40,9 @@ export class ShoppingCartComponent implements OnInit {
 
     this.shoppingCartService.getChannel().bind('itemRemoved', data => {
       this.shoppingCart.shoppingCartProducts = this.shoppingCart.shoppingCartProducts.filter(item => item.id !== data.id);
+      // this.shoppingCart.shoppingCartProducts = this.shoppingCart.shoppingCartProducts.filter(item => {
+      //   console.log(item.id !== data.id);
+      // });
 
       this.setValues();
     });

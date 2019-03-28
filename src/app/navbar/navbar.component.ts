@@ -52,8 +52,7 @@ export class NavbarComponent implements OnInit {
     });
 
     this.shoppingCartService.getChannel().bind('cartDeleted', data => {
-      this.shoppingCart.shoppingCartProducts = [];
-
+      this.shoppingCart = {};
       this.sessionService.saveCartId("");
 
       this.shoppingCartService.getCart().subscribe(data => {
