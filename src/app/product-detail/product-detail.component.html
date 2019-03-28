@@ -13,7 +13,7 @@
     </p>
     <div class="product_meta">
       <span class="posted_in"> <strong>Category:</strong>
-        <a [routerLink]="['/']" [queryParams]="{category:product.category.code}"> {{product.category.name}} </a>
+        <a [routerLink]="['/']" [queryParams]="{category:product.category?.code}"> {{product.category?.name}} </a>
       </span>
       <span class="tagged_as">
         <strong>Tags:</strong> <a rel="tag" href="#">vegetarian</a>, <a rel="tag" href="#">healthy</a>
