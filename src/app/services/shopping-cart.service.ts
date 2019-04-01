@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { PusherService } from './pusher.service';
@@ -11,7 +10,7 @@ import { SessionStorageService } from './session-storage.service';
 })
 export class ShoppingCartService {
 
-  API_URL = environment.API_BASE_URL + '/carts';
+  API_URL = "/api/carts";
   private channel: any;
 
   constructor(

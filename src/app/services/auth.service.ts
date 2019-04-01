@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
 import { JwtResponse } from '../models/jwt-response';
 
 
@@ -10,7 +9,7 @@ import { JwtResponse } from '../models/jwt-response';
 })
 export class AuthService {
 
-  API_URL = environment.API_BASE_URL + '/auth';
+  API_URL = "/api/auth";
 
   constructor(private http: HttpClient) { }
 
