@@ -1,9 +1,31 @@
 <div class="row">
 
   <div class="col-md-3">
-    <product-card [product]="product" [show-actions]="false"></product-card>
-  </div>
+    <div *ngIf="product.name" class="item card">
+      <span class="notify-badge" *ngIf="product.percentage">
+        <i class="fa fa-tags"></i> {{ product.percentage }} % Off
+      </span>
+      <img class="card-img-top" [src]="product.imageUrl" *ngIf="product.imageUrl" alt="{{ product.name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ product.name }}</h5>
+        <div class="card-text">
+          <div class="row">
+            <span *ngIf="!product.percentage" class="card-text col-6 text-danger">
+              {{ product.price | currency:'LKR ' : 'symbol' : '1.0'}}</span>
+            <div *ngIf="product.percentage">
+              <span class="card-text col-6 text-danger">
+                <del> {{ product.price | currency:'LKR ' : 'symbol' : '1.0'}} </del>
+              </span>
+              <span class="card-text col text-right text-danger">
+                <b> {{ product.price*(1-product.percentage/100) | currency:'LKR ' : 'symbol' : '1.0'}}</b>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
 
+    </div>
+  </div>
   <div class="col-md-6">
     <form #productForm="ngForm" (ngSubmit)="save(productForm.value)">
       <div class="form-group">
@@ -30,13 +52,23 @@
 
       <div class="form-group">
         <label for="category">Category</label>
+        <select required #category="ngModel" [(ngModel)]="product.category" [compareWith]="compareByOptionId"
+          name="category" id="category" class="form-control" [disabled]="isReadOnly">
+          <option *ngFor="let category of categoryList" [ngValue]="category"> {{category.name}} </option>
+        </select>
+        <div class="invalid-feedback d-block" *ngIf="category.touched && category.invalid"> Category is Required
+        </div>
+      </div>
+
+      <!-- <div class="form-group">
+        <label for="category">Category</label>
         <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control"
           required>
           <option value=""></option>
           <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
         </select>
         <div class="alert alert-danger" *ngIf="category.touched && category.invalid">Category is Required </div>
-      </div>
+      </div> -->
 
       <div class="form-group">
         <label for="imageUrl">Image URL</label>

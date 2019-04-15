@@ -38,6 +38,10 @@ export class ProductFormComponent implements OnInit {
     });
   }
 
+  compareByOptionId(idFirst, idSecond) {
+    return idFirst && idSecond && idFirst.id == idSecond.id;
+  }
+
   save() {
 
     if (this.id) {
