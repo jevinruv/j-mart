@@ -23,6 +23,7 @@ import { httpInterceptorProviders } from './auth-interceptor';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
     RegisterComponent,
     ShoppingCartComponent,
     AdminLoginComponent,
+    AdminLayoutComponent,
   ],
   imports: [
     BrowserModule,

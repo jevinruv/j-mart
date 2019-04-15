@@ -44,7 +44,7 @@ export class AdminLoginComponent implements OnInit {
       this.sessionService.saveUserId(data.userId);
       this.sessionService.saveAuthorities(data.authorities);
 
-      this.router.navigateByUrl('');
+      this.router.navigateByUrl('admin/products');
     }
     else {
       this.toastr.error("Error");

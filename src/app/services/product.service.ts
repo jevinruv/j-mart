@@ -25,8 +25,8 @@ export class ProductService {
       imageUrl: product.imageUrl,
       description: product.description
     };
-    console.log(newProduct);
-    return this.http.post(this.API_URL + `/new/${product.category}`, newProduct);
+    // console.log(newProduct);
+    return this.http.post(this.API_URL + `/new/${product.category.id}`, newProduct);
   }
 
   updateProduct(product) {

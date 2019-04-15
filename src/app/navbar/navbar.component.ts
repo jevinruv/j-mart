@@ -85,7 +85,6 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-
   toggleNavbar() {
     this.isNavbarCollapsed = !this.isNavbarCollapsed;
   }

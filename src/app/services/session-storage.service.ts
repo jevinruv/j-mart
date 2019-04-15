@@ -77,4 +77,10 @@ export class SessionStorageService {
       return this.getAuthorities()[0]['authority'];
   }
 
+  public isAdmin() {
+    if (this.getAuthority()) {
+      return this.getAuthority() == 'ROLE_ADMIN';
+    }
+  }
+
 }

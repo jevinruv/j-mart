@@ -12,6 +12,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
+import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 
 const routes: Routes = [
   {
@@ -26,7 +27,7 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: DefaultLayoutComponent,
+    component: AdminLayoutComponent,
     canActivate: [AdminAuthGuard],
     children: [
       { path: 'products/new', component: ProductFormComponent },
