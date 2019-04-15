@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { ToastrService } from 'ngx-toastr';
-import { ShoppingCartService } from '../services/shopping-cart.service';
 import { SessionStorageService } from '../services/session-storage.service';
 
 @Component({
