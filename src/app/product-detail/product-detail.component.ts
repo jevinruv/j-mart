@@ -59,6 +59,8 @@ export class ProductDetailComponent implements OnInit {
 
   addToCart() {
 
+    this.inCart = true;
+
     let cartId = this.shoppingCartService.getOrCreateCartId();
 
     let cartItem = {
@@ -72,11 +74,13 @@ export class ProductDetailComponent implements OnInit {
         // console.log(data);
       },
       error => {
-        console.error(error);
+        // console.error(error);
       });
   }
 
   removeFromCart() {
+
+    this.inCart = false;
 
     let cartId = this.shoppingCartService.getOrCreateCartId();
 
@@ -91,10 +95,7 @@ export class ProductDetailComponent implements OnInit {
         // console.log(data);
       },
       error => {
-        console.error(error);
+        // console.error(error);
       });
   }
-
-
-
 }

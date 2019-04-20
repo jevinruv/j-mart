@@ -108,6 +108,8 @@ body{
 
 .pro-img-details img {
     width: 100%;
+    height: 15vw;
+    object-fit: contain;
 }
 
 .pro-d-title {

@@ -1,9 +1,11 @@
 <div class="row">
+
   <div class="col-md-4">
     <div class="pro-img-details">
       <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="product-image">
     </div>
   </div>
+
   <div class="col-md-6">
     <h4> {{product.name}} </h4>
     <p> {{product.description}} </p>
@@ -14,7 +16,8 @@
           {{product.category.name}} </a>
       </span>
       <span class="tagged_as">
-        <strong>Tags:</strong> <a rel="tag" href="#">vegetarian</a>, <a rel="tag" href="#">healthy</a>
+        <strong>Tags:</strong>
+        <a rel="tag" href="#">vegetarian</a>, <a rel="tag" href="#">healthy</a>
       </span>
     </div>
     <div>
@@ -36,10 +39,9 @@
         min="1">
     </div>
     <p>
-      <button class="btn btn-success" type="button" (click)="addToCart()">
-        <i class="fa fa-shopping-cart"></i> Add to Cart
-      </button>
+      <button class="btn btn-success" type="button" (click)="addToCart()"> Add to Cart </button>
       <button class="btn btn-danger" type="button" *ngIf="inCart" (click)="removeFromCart()"> Remove </button>
     </p>
   </div>
+
 </div>
