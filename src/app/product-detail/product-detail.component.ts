@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { ShoppingCartService } from '../services/shopping-cart.service';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-product-detail',
@@ -10,8 +11,8 @@ import { ShoppingCartService } from '../services/shopping-cart.service';
 })
 export class ProductDetailComponent implements OnInit {
 
-  id;
-  product: any = {};
+  id: string;
+  product: Product = new Product();
   shoppingCart: any = {};
   quantity = 1;
   inCart = false;

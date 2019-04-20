@@ -1,25 +1,24 @@
 <div class="row">
   <div class="col-md-4">
     <div class="pro-img-details">
-      <img [src]="product.imageUrl" alt="product-image">
+      <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="product-image">
     </div>
   </div>
   <div class="col-md-6">
-    <h4 class="pro-d-title">
-      <h3>{{product.name}}</h3>
-    </h4>
-    <p>
-      {{product.description}}
-    </p>
+    <h4> {{product.name}} </h4>
+    <p> {{product.description}} </p>
     <div class="product_meta">
-      <span class="posted_in"> <strong>Category:</strong>
-        <a [routerLink]="['/']" [queryParams]="{category:product.category?.code}"> {{product.category?.name}} </a>
+      <span class="posted_in">
+        <strong>Category:</strong>
+        <a *ngIf="product.category" [routerLink]="['/']" [queryParams]="{category:product.category.code}">
+          {{product.category.name}} </a>
       </span>
       <span class="tagged_as">
         <strong>Tags:</strong> <a rel="tag" href="#">vegetarian</a>, <a rel="tag" href="#">healthy</a>
       </span>
     </div>
-    <div class="m-bot15"> <strong>Price : </strong>
+    <div>
+      <strong>Price : </strong>
       <span *ngIf="!product.percentage" class="pro-price">
         {{ product.price | currency:'LKR ' : 'symbol' : '1.0'}}</span>
       <div *ngIf="product.percentage">
@@ -32,7 +31,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label>Quantity</label>
+      <strong>Quantity : </strong>
       <input type="number" class="form-control quantity" [ngModel]="quantity" (ngModelChange)="valueChange($event)"
         min="1">
     </div>
