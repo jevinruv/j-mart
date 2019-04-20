@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -11,26 +12,15 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<[]>(this.API_URL);
+    return this.http.get<Product[]>(this.API_URL);
   }
 
-  getProduct(id) {
-    return this.http.get(this.API_URL + `/${id}`);
+  get(id) {
+    return this.http.get<Product>(this.API_URL + `/${id}`);
   }
 
-  addProduct(product) {
-    let newProduct = {
-      name: product.name,
-      price: product.price,
-      imageUrl: product.imageUrl,
-      description: product.description
-    };
-    // console.log(newProduct);
-    return this.http.post(this.API_URL + `/new/${product.category.id}`, newProduct);
-  }
-
-  updateProduct(product) {
-    return this.http.put(this.API_URL, product);
+  addOrUpdate(product) {
+    return this.http.post(this.API_URL, product);
   }
 
   delete(id) {
