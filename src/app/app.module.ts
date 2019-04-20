@@ -12,10 +12,10 @@ import { HomeComponent } from './home/home.component';
 import { LoginLayoutComponent } from './layouts/login-layout/login-layout.component';
 import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.component';
 import { LoginComponent } from './login/login.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
+import { AdminProductListComponent } from './admin/admin-product-list/admin-product-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { AdminProductDetailComponent } from './admin/admin-product-detail/admin-product-detail.component';
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
@@ -33,8 +33,8 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     LoginLayoutComponent,
     DefaultLayoutComponent,
     LoginComponent,
-    AdminProductsComponent,
-    ProductFormComponent,
+    AdminProductListComponent,
+    AdminProductDetailComponent,
     ProductFilterComponent,
     ProductCardComponent,
     ProductDetailComponent,

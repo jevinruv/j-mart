@@ -4,8 +4,7 @@ import { DefaultLayoutComponent } from './layouts/default-layout/default-layout.
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
-import { ProductFormComponent } from './admin/product-form/product-form.component';
+import { AdminProductListComponent } from './admin/admin-product-list/admin-product-list.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
@@ -13,6 +12,7 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminProductDetailComponent } from './admin/admin-product-detail/admin-product-detail.component';
 
 const routes: Routes = [
   {
@@ -30,9 +30,9 @@ const routes: Routes = [
     component: AdminLayoutComponent,
     canActivate: [AdminAuthGuard],
     children: [
-      { path: 'products/new', component: ProductFormComponent },
-      { path: 'products/:id', component: ProductFormComponent },
-      { path: 'products', component: AdminProductsComponent },
+      { path: 'products/new', component: AdminProductDetailComponent },
+      { path: 'products/:id', component: AdminProductDetailComponent },
+      { path: 'products', component: AdminProductListComponent },
     ]
   },
   {

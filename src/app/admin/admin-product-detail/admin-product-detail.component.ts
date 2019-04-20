@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { Category } from 'src/app/models/category';
 import { Product } from 'src/app/models/product';
+import { OnInit, Component } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-product-form',
-  templateUrl: './product-form.component.html',
-  styleUrls: ['./product-form.component.css'],
+  selector: 'app-admin-product-detail',
+  templateUrl: './admin-product-detail.component.html',
+  styleUrls: ['./admin-product-detail.component.css'],
 })
-export class ProductFormComponent implements OnInit {
+export class AdminProductDetailComponent implements OnInit {
 
   product: Product = new Product();
   categoryList: Category[] = [];
