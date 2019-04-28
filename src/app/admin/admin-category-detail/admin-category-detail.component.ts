@@ -42,7 +42,7 @@ export class AdminCategoryDetailComponent implements OnInit {
   }
 
   edit() {
-    this.isReadOnly = false;
+    this.isReadOnly = !this.isReadOnly;
   }
 
 }
