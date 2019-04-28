@@ -55,3 +55,35 @@
 
     </form>
   </div>
+
+</div>
+
+<div *ngIf="category.products">
+  <h5>Category Products</h5>
+
+  <div class="row mt-4">
+
+    <div class="col-md-10">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of category.products">
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>
+              <a [routerLink]="[product.id]">Edit</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
