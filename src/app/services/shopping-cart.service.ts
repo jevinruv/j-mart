@@ -63,7 +63,7 @@ export class ShoppingCartService {
 
   private fetch() {
     let userId = this.sessionService.getUserId();
-    return this.http.post(this.API_URL + '/fetch', userId);
+    return this.http.get(this.API_URL + `/fetch/${userId}`);
   }
 
 }
