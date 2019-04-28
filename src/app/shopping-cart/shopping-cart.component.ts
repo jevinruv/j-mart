@@ -40,9 +40,6 @@ export class ShoppingCartComponent implements OnInit {
 
     this.shoppingCartService.getChannel().bind('itemRemoved', data => {
       this.shoppingCart.shoppingCartProducts = this.shoppingCart.shoppingCartProducts.filter(item => item.id !== data.id);
-      // this.shoppingCart.shoppingCartProducts = this.shoppingCart.shoppingCartProducts.filter(item => {
-      //   console.log(item.id !== data.id);
-      // });
 
       this.setValues();
     });
@@ -96,6 +93,7 @@ export class ShoppingCartComponent implements OnInit {
   decreaseCartItem(cartItem) {
 
     let cartId = this.shoppingCartService.getOrCreateCartId();
+
     let newCartItem = {
       shoppingCartId: cartId,
       productId: cartItem.product.id,

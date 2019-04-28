@@ -47,7 +47,7 @@ export class AdminProductDetailComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.product);
+    // console.log(this.product);
 
     this.productService.addOrUpdate(this.product).subscribe(
       data => {
