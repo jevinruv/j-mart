@@ -25,6 +25,7 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AdminCategoryDetailComponent } from './admin/admin-category-detail/admin-category-detail.component';
+import { AdminCategoryListComponent } from './admin/admin-category-list/admin-category-list.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AdminCategoryDetailComponent } from './admin/admin-category-detail/admi
     AdminLoginComponent,
     AdminLayoutComponent,
     AdminCategoryDetailComponent,
+    AdminCategoryListComponent,
   ],
   imports: [
     BrowserModule,

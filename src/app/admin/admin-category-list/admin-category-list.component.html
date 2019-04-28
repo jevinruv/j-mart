@@ -1,0 +1,32 @@
+<h3>Category List</h3>
+
+<p class="float-right">
+  <a routerLink="/categories/new" class="btn btn-primary">
+    <i class="fa fa-plus"></i> New Category
+  </a>
+</p>
+
+<p>
+  <input #query (keyup)="filter(query.value)" type="text" placeholder="Search..." class="form-control">
+</p>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Code</th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of filteredCategoryList" [routerLink]="[category.id]">
+      <td>{{category.id}}</td>
+      <td>{{category.code}}</td>
+      <td>{{category.name}}</td>
+      <td>
+        <a [routerLink]="[category.id]">Manage</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

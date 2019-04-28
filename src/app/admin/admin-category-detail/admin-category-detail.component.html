@@ -48,7 +48,7 @@
       </div>
 
       <div>
-        <a routerLink="/categories" class="btn btn-secondary">Category List</a>
+        <a routerLink="/admin/categories" class="btn btn-secondary">Category List</a>
         <button class="btn btn-success" [disabled]="!categoryForm.valid || isReadOnly">Save</button>
         <button *ngIf="category.id" type="button" (click)="edit()" class="btn btn-primary">Edit</button>
       </div>

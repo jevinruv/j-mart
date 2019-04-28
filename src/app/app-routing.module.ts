@@ -14,6 +14,7 @@ import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AdminProductDetailComponent } from './admin/admin-product-detail/admin-product-detail.component';
 import { AdminCategoryDetailComponent } from './admin/admin-category-detail/admin-category-detail.component';
+import { AdminCategoryListComponent } from './admin/admin-category-list/admin-category-list.component';
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
 
       { path: 'categories/new', component: AdminCategoryDetailComponent },
       { path: 'categories/:id', component: AdminCategoryDetailComponent },
+      { path: 'categories', component: AdminCategoryListComponent },
     ]
   },
   {
