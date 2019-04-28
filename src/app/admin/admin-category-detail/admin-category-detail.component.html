@@ -1,0 +1,57 @@
+<h3>Category</h3>
+
+<div class="row mt-4">
+
+  <div class="col-md-3">
+    <div *ngIf="category.name" class="item card">
+      <img class="card-img-top" [src]="category.imageUrl" *ngIf="category.imageUrl" alt="{{ category.name }}">
+      <div class="card-body">
+        <h5 class="card-title">{{ category.name }}</h5>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="col-md">
+    <form #categoryForm="ngForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="id">ID</label>
+          <input #id="ngModel" [(ngModel)]="category.id" name="id" id="id" type="text" class="form-control"
+            [readonly]="true">
+        </div>
+
+        <div class="form-group col-md-6">
+          <label for="code">Code</label>
+          <input #code="ngModel" [(ngModel)]="category.code" name="code" id="code" type="text" class="form-control"
+            [readonly]="isReadOnly">
+          <div class="invalid-feedback d-block" *ngIf="code.touched && code.invalid"> Code is Required </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input #name="ngModel" [(ngModel)]="category.name" name="name" id="name" type="text"
+          class="form-control col-md-9" required [readonly]="isReadOnly">
+        <div class="invalid-feedback d-block" *ngIf="name.touched && name.invalid"> Name is Required </div>
+      </div>
+
+      <div class="form-group">
+        <label for="imageUrl">Image URL</label>
+        <input #imageUrl="ngModel" [(ngModel)]="category.imageUrl" name="imageUrl" id="imageUrl"
+          class="form-control col-md-9" required url [readonly]="isReadOnly">
+        <div class="invalid-feedback d-block" *ngIf="imageUrl.touched && imageUrl.invalid">
+          <div *ngIf="imageUrl.errors.required">Image Url is Required</div>
+          <div *ngIf="imageUrl.errors.url">Image Url is Invalid</div>
+        </div>
+      </div>
+
+      <div>
+        <a routerLink="/categories" class="btn btn-secondary">Category List</a>
+        <button class="btn btn-success" [disabled]="!categoryForm.valid || isReadOnly">Save</button>
+        <button *ngIf="category.id" type="button" (click)="edit()" class="btn btn-primary">Edit</button>
+      </div>
+
+    </form>
+  </div>

@@ -13,6 +13,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminAuthGuard } from './guards/admin-auth.guard';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AdminProductDetailComponent } from './admin/admin-product-detail/admin-product-detail.component';
+import { AdminCategoryDetailComponent } from './admin/admin-category-detail/admin-category-detail.component';
 
 const routes: Routes = [
   {
@@ -33,6 +34,9 @@ const routes: Routes = [
       { path: 'products/new', component: AdminProductDetailComponent },
       { path: 'products/:id', component: AdminProductDetailComponent },
       { path: 'products', component: AdminProductListComponent },
+
+      { path: 'categories/new', component: AdminCategoryDetailComponent },
+      { path: 'categories/:id', component: AdminCategoryDetailComponent },
     ]
   },
   {

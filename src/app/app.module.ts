@@ -24,6 +24,7 @@ import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
+import { AdminCategoryDetailComponent } from './admin/admin-category-detail/admin-category-detail.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
     ShoppingCartComponent,
     AdminLoginComponent,
     AdminLayoutComponent,
+    AdminCategoryDetailComponent,
   ],
   imports: [
     BrowserModule,
