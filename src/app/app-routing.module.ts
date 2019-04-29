@@ -15,6 +15,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AdminProductDetailComponent } from './admin/admin-product-detail/admin-product-detail.component';
 import { AdminCategoryDetailComponent } from './admin/admin-category-detail/admin-category-detail.component';
 import { AdminCategoryListComponent } from './admin/admin-category-list/admin-category-list.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'products/:id', component: ProductDetailComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
+      { path: 'checkout', component: CheckoutComponent },
     ]
   },
   {

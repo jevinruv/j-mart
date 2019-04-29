@@ -1,0 +1,80 @@
+<div *ngIf="cartProductCount > 0; else emptyCart" class="row">
+
+  <div class="col-md-9">
+    <form #checkoutForm="ngForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+
+      <div class="form-group">
+        <label for="name">Name on card</label>
+        <input ngModel #name="ngModel" name="name" id="name" type="text" class="form-control col-md-9" required>
+        <div class="invalid-feedback d-block" *ngIf="name.touched && name.invalid"> Name is Required </div>
+      </div>
+
+      <div class="form-group">
+        <label for="cardno">Card Number</label>
+        <input ngModel #cardno="ngModel" name="cardno" id="cardno" type="text" class="form-control col-md-9" required
+          maxlength="10" size="10">
+        <div class="invalid-feedback d-block" *ngIf="cardno.touched && cardno.invalid"> Card Number is Required </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-5">
+          <label for="expiration">Expiration</label>
+          <input ngModel #expiration="ngModel" name="expiration" id="expiration" type="text" class="form-control"
+            required maxlength="7" size="7" placeholder="2019/03">
+          <div class="invalid-feedback d-block" *ngIf="expiration.touched && expiration.invalid"> Expiration is Required
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="cvv">CVV</label>
+          <input ngModel #cvv="ngModel" name="quantity" id="cvv" type="text" class="form-control" required maxlength="3"
+            size="3">
+          <div class="invalid-feedback d-block" *ngIf="cvv.touched && cvv.invalid"> CVV is Required
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input ngModel #address="ngModel" name="address" id="address" class="form-control col-md-9" required>
+        <div class="invalid-feedback d-block" *ngIf="address.touched && address.invalid"> Address is
+          Required
+        </div>
+      </div>
+
+      <div>
+        <a routerLink="/shopping-cart" class="btn btn-secondary"> <i class="fa fa-arrow-left"></i>Shopping Cart</a>
+        <button class="btn btn-success" [disabled]="!checkoutForm.valid">Complete</button>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="col-md-3">
+    <div class="container bg-light p-2">
+      <h4>Cart
+        <span class="price">
+          <i class="fa fa-shopping-cart"></i>
+          <b>{{cartProductCount}}</b>
+        </span>
+      </h4>
+      <div *ngIf="shoppingCart.shoppingCartProducts">
+        <p *ngFor="let cartProduct of shoppingCart.shoppingCartProducts">
+          <span>{{cartProduct.product.name}} <b>x {{cartProduct.quantity}}</b> </span>
+          <span class="price">{{cartProduct.product.price | currency:'LKR ' : 'symbol' : '1.0'}}</span>
+        </p>
+      </div>
+      <hr>
+      <p>Total <span class="price">{{totalPrice | currency:'LKR ' : 'symbol' : '1.0'}}</span></p>
+      <p>Discount <span class="price">- {{discount | currency:'LKR ' : 'symbol' : '1.0'}}</span></p>
+      <p>Grand Total <span class="price"><b>{{totalPrice - discount | currency:'LKR ' : 'symbol' : '1.0'}}</b></span>
+      </p>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyCart>
+  <div class="row h-100 justify-content-center align-items-center">
+    <h3>Cart is Empty!</h3>
+  </div>
+</ng-template>

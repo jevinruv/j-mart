@@ -23,7 +23,6 @@ export class NavbarComponent implements OnInit {
 
     this.shoppingCartService.getCart().subscribe(data => {
       this.shoppingCart = data;
-
       this.getProductCount();
     });
 

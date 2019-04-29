@@ -26,6 +26,7 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { AdminCategoryDetailComponent } from './admin/admin-category-detail/admin-category-detail.component';
 import { AdminCategoryListComponent } from './admin/admin-category-list/admin-category-list.component';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AdminCategoryListComponent } from './admin/admin-category-list/admin-ca
     AdminLayoutComponent,
     AdminCategoryDetailComponent,
     AdminCategoryListComponent,
+    CheckoutComponent,
   ],
   imports: [
     BrowserModule,
