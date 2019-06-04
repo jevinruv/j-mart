@@ -19,7 +19,6 @@ import { AdminProductDetailComponent } from './admin/admin-product-detail/admin-
 import { ProductFilterComponent } from './product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
-import { httpInterceptorProviders } from './auth-interceptor';
 import { RegisterComponent } from './register/register.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
@@ -27,6 +26,11 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { AdminCategoryDetailComponent } from './admin/admin-category-detail/admin-category-detail.component';
 import { AdminCategoryListComponent } from './admin/admin-category-list/admin-category-list.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+
+import { httpAuthInterceptorProvider } from './auth-interceptor';
+import { LoaderComponent } from './ui/loader/loader.component';
+import { httpLoaderInterceptorProvider } from './loader-interceptor';
+
 
 @NgModule({
   declarations: [
@@ -48,6 +52,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     AdminCategoryDetailComponent,
     AdminCategoryListComponent,
     CheckoutComponent,
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,9 +65,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
     NgbModule,
     // DataTableModule.forRoot(),
   ],
-  providers: [
-    httpInterceptorProviders
-  ],
+  providers: [httpAuthInterceptorProvider, httpLoaderInterceptorProvider],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
