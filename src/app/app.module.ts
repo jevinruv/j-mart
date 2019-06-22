@@ -30,6 +30,8 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { httpAuthInterceptorProvider } from './auth-interceptor';
 import { LoaderComponent } from './ui/loader/loader.component';
 import { httpLoaderInterceptorProvider } from './loader-interceptor';
+import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 
 @NgModule({
@@ -53,6 +55,8 @@ import { httpLoaderInterceptorProvider } from './loader-interceptor';
     AdminCategoryListComponent,
     CheckoutComponent,
     LoaderComponent,
+    PurchaseHistoryComponent,
+    UpdateProfileComponent,
   ],
   imports: [
     BrowserModule,

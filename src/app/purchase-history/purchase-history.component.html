@@ -1,0 +1,23 @@
+<h1>Purchase History</h1>
+<ng-container *ngIf="purchaseHistory">
+  <p> Total - {{ cartProductCount }}</p>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Unit Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let cartItem of purchaseHistory">
+        <td>{{cartItem.product.id}} - {{cartItem.product.name}}</td>
+        <td>{{cartItem.product.price | currency:'LKR ' : 'symbol' : '1.0'}}</td>
+        <td>{{ cartItem.quantity }} </td>
+        <td>{{cartItem.quantity*cartItem.product.price | currency:'LKR ' : 'symbol' : '1.0'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-container>

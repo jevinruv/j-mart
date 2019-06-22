@@ -15,6 +15,12 @@ export class UserService {
     return this.http.get<User[]>(this.API_URL)
   }
 
+  get(id) {
+    return this.http.get<User>(this.API_URL + `/${id}`);
+  }
 
+  update(user) {
+    return this.http.put(this.API_URL, user);
+  }
 
 }

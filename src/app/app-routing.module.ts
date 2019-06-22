@@ -16,6 +16,8 @@ import { AdminProductDetailComponent } from './admin/admin-product-detail/admin-
 import { AdminCategoryDetailComponent } from './admin/admin-category-detail/admin-category-detail.component';
 import { AdminCategoryListComponent } from './admin/admin-category-list/admin-category-list.component';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 
 const routes: Routes = [
   {
@@ -27,6 +29,9 @@ const routes: Routes = [
       { path: 'products/:id', component: ProductDetailComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'checkout', component: CheckoutComponent },
+      { path: 'purchase-history', component: PurchaseHistoryComponent },
+
+      { path: 'update-profile', component: UpdateProfileComponent },
     ]
   },
   {

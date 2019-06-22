@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light">
-  <a class="navbar-brand" routerLink="/">JMart</a>
+  <a class="navbar-brand" routerLink="/" routerLinkActive="active">JMart</a>
   <button class="navbar-toggler hidden-sm-up" type="button" (click)="toggleNavbar()" data-target="#navbarsDefault"
     aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -7,12 +7,12 @@
   <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Offers</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/shopping-cart"> Shopping Cart
+        <a class="nav-link" routerLink="/shopping-cart" routerLinkActive="active"> Shopping Cart
           <span class="badge badge-warning badge-pill">{{cartProductCount}}</span>
         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/purchase-history" routerLinkActive="active">Purchase History</a>
       </li>
       <li class="nav-item" *ngIf="!username">
         <a class="nav-link" routerLink="/login">Login</a>
@@ -22,7 +22,7 @@
           <i class="fa fa-user-circle"></i> {{username}}
         </a>
         <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
-          <a class="dropdown-item" href="#">HTML</a>
+          <a class="dropdown-item" routerLink="/update-profile">Profile</a>
           <a class="dropdown-item" (click)="logout()">Logout</a>
         </div>
       </li>

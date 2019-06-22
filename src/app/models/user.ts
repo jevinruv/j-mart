@@ -1,8 +1,16 @@
 export class User {
+    id: number;
     email: string;
     name: string;
-    role: string;
+    password: string;
+    username: string;
 
-    constructor(private password: string) { }
+    constructor() {
+        this.id = null;
+        this.email = null;
+        this.password = null;
+        this.name = null;
+        this.username = null;
+    }
 
 }
